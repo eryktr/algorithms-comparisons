@@ -1,4 +1,7 @@
-import matplotlib
+import matplotlib.pyplot as plt
 
 def plot(results):
-    labels = [function.__name__ for function in functions]
+    labels = results[0]
+    values = results[1]
+    plt.bar(labels, values)
+    plt.show()
