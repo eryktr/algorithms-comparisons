@@ -1,4 +1,5 @@
-from ..utility.timer import timed
+import sys
+from algorithms_comparisons.utility.timer import timed
 def benchmark(functions, parameters):
     
     def decorate_functions_with_timer(functions):
@@ -18,11 +19,8 @@ def benchmark(functions, parameters):
         return time_results
 
     def build_output(functions, time_results):
-        results = {}
-        for function in functions:
-            for result in time_results:
-                results[function.__name__] = result
-        return results
+        function_names = [function.__name__ for function in functions]
+        return (function_names, time_results)
     
     timed_functions = decorate_functions_with_timer(functions)
     time_results = measure_time_of_execution(timed_functions, parameters)

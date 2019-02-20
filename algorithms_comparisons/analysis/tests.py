@@ -15,6 +15,6 @@ class BenchmarkTest(unittest.TestCase):
     
     def test_benchmark_works(self):
         res = benchmark(self.functions, self.arguments)
-        self.assertEqual(len(res), 3)
-        for key in res:
-            self.assertGreater(res[key], 0)
+        self.assertEqual(len(res), 2)
+        for key in res[1]:
+            self.assertGreater(key, 0)
