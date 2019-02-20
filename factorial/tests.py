@@ -1,6 +1,6 @@
 import unittest
 import factorial as f
-from timer import timed
+from utility.timer import timed
 
 class TestFactorial(unittest.TestCase):
     
@@ -28,5 +28,4 @@ class TestTimedAttribute(unittest.TestCase):
 
         seven, time = timed(func())()
         self.assertEqual(seven, 7)
-    
     
