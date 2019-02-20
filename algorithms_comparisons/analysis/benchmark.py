@@ -1,4 +1,4 @@
-from utility.timer import timed
+from ..utility.timer import timed
 def benchmark(functions, parameters):
     
     def decorate_functions_with_timer(functions):
