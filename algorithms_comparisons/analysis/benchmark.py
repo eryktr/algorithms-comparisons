@@ -8,13 +8,14 @@ class Benchmark(abc.ABC):
         pass
     
     @abc.abstractmethod
-    def build_output(self, functions, time_results):
+    def build_output(self, functions, time_results, parameters):
         pass
 
+    
     def run(self, functions, parameters):
         timed_functions = self.decorate_functions_with_timer(functions)
         time_results = self.measure_time_of_execution(timed_functions, parameters)
-        output = self.build_output(functions, time_results)
+        output = self.build_output(functions, time_results, parameters)
         return output
 
     def decorate_functions_with_timer(self, functions):
@@ -24,12 +25,6 @@ class Benchmark(abc.ABC):
         return timed_functions
 
 class OverallPerformanceBenchmark(Benchmark):
-    
-    def decorate_functions_with_timer(self, functions):
-        timed_functions = []
-        for function in functions:
-            timed_functions.append(timed(function))
-        return timed_functions
 
     def measure_time_of_execution(self, timed_functions, parameters):
         time_results = [0] * len(timed_functions)
@@ -41,10 +36,23 @@ class OverallPerformanceBenchmark(Benchmark):
             time_results[index] = time_result
         return time_results
 
-    def build_output(self, functions, time_results):
+    def build_output(self, functions, time_results, parameters):
         function_names = [function.__name__ for function in functions]
         return (function_names, time_results)
 
-    
+class ProblemSizePerformanceBenchmark(Benchmark):
+    def measure_time_of_execution(self, timed_functions, parameters):
+        time_results = [[0] * len(parameters)] * len(timed_functions)
+        print(time_results[0].__len__())
+        for findex, timed_function in enumerate(timed_functions):
+            for pindex, param in enumerate(parameters):
+                _, time = timed_function(param)
+                time_results[findex][pindex] = time
+        return time_results
+
+    def build_output(self, functions, time_results, parameters):
+        function_names = [function.__name__ for function in functions]
+        return (function_names, parameters, time_results)
+                    
     
 
