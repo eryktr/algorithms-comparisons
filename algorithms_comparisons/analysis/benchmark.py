@@ -42,8 +42,7 @@ class OverallPerformanceBenchmark(Benchmark):
 
 class ProblemSizePerformanceBenchmark(Benchmark):
     def measure_time_of_execution(self, timed_functions, parameters):
-        time_results = [[0] * len(parameters)] * len(timed_functions)
-        print(time_results[0].__len__())
+        time_results = [[0 for x in range(len(parameters))] for fun in range(len(timed_functions))]
         for findex, timed_function in enumerate(timed_functions):
             for pindex, param in enumerate(parameters):
                 _, time = timed_function(param)
@@ -53,6 +52,4 @@ class ProblemSizePerformanceBenchmark(Benchmark):
     def build_output(self, functions, time_results, parameters):
         function_names = [function.__name__ for function in functions]
         return (function_names, parameters, time_results)
-                    
-    
 

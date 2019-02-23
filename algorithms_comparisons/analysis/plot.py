@@ -1,4 +1,5 @@
 import abc
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -21,7 +22,10 @@ class PerformanceChartPlotter(Plotter):
         parameters = results[1]
         time_results = results[2]
         colors =['b','r','g','y']
-        for index, time_result in enumerate(time_results):
-            plt.plot(parameters, time_result, colors[index], label=labels[index])
-            plt.legend()
+        plt.xticks(np.arange(0, int(len(parameters)), len(parameters)/10))
+        plt.xlabel("Problem size")
+        plt.ylabel("Time taken (s)")
+        for index, label in enumerate(labels):
+            plt.plot(parameters, time_results[index], colors[index], label=label)
+        plt.legend()
         plt.show()

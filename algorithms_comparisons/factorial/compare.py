@@ -10,7 +10,7 @@ def compare_factorials_barchart():
 def compare_factorials_performancechart():
     comparator = PerformanceChartComparator()
     functions = [f.accumulated_factorial, f.dynamic_factorial, f.naive_factorial, f.recursive_factorial]
-    parameters = [i for i in range(300)]
+    parameters = [i for i in range(400)]
     comparator.compare(functions, parameters)
 
 if __name__ == "__main__":
