@@ -10,7 +10,7 @@ def compare_fibonacci_barchart():
 def compare_fibonacci_performancechart():
     comparator = PerformanceChartComparator()
     functions = [fibonacci.dynamic_fibonacci, fibonacci.matrix_fibonacci]
-    parameters = [i for i in range(1000)]
+    parameters = [i for i in range(3000)]
     comparator.compare(functions, parameters)
 
 if __name__ == "__main__":
