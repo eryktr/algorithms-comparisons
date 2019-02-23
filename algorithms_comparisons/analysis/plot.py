@@ -22,7 +22,7 @@ class PerformanceChartPlotter(Plotter):
         parameters = results[1]
         time_results = results[2]
         colors =['b','r','g','y']
-        plt.xticks(np.arange(0, int(len(parameters)), len(parameters)/10))
+        plt.xticks(np.arange(int(parameters[0]), parameters[int(len(parameters) - 1)], len(parameters)/10))
         plt.xlabel("Problem size")
         plt.ylabel("Time taken (s)")
         for index, label in enumerate(labels):

@@ -42,11 +42,13 @@ class OverallPerformanceBenchmark(Benchmark):
 
 class ProblemSizePerformanceBenchmark(Benchmark):
     def measure_time_of_execution(self, timed_functions, parameters):
+        num_trials = 1000
         time_results = [[0 for x in range(len(parameters))] for fun in range(len(timed_functions))]
-        for findex, timed_function in enumerate(timed_functions):
-            for pindex, param in enumerate(parameters):
-                _, time = timed_function(param)
-                time_results[findex][pindex] = time
+        for trial in range(num_trials):
+            for findex, timed_function in enumerate(timed_functions):
+                for pindex, param in enumerate(parameters):
+                    _, time = timed_function(param)
+                    time_results[findex][pindex] += time/num_trials
         return time_results
 
     def build_output(self, functions, time_results, parameters):
